@@ -17,7 +17,15 @@ class EmailEnv:
     def reset(self):
         self.current_step = 0
         task = self.tasks[self.current_step]
-        return {"observation": Observation(subject=task["subject"], body=task["body"], sender="user@example.com"), "info": {}}
+        # Format consistent rakha hai Meta ke liye
+        return {
+            "observation": {
+                "subject": task["subject"],
+                "body": task["body"],
+                "sender": "user@example.com"
+            },
+            "info": {}
+        }
 
     def step(self, action: Action):
         correct_category = self.tasks[self.current_step]["category"]
@@ -46,6 +54,8 @@ def reset_endpoint():
 def step_endpoint(action: Action):
     return my_env.step(action)
 
-if __name__ == "__main__":
-  
+def main():
     uvicorn.run(app, host="0.0.0.0", port=7860)
+
+if __name__ == "__main__":
+    main()
