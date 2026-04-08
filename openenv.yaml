@@ -1,5 +1,6 @@
 name: "email_triage_env"
 version: "1.0.0"
+type: "environment"
 description: "A real-world task simulation for categorizing customer support emails."
 entry_point: "env:EmailEnv"  
 tags:
